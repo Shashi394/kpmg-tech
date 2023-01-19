@@ -1,0 +1,5 @@
+
+curl -H Metadata:True "*" "http://10.0.1.24/metadata/instance?api-version=2021-02-01&format=json" | jq 
+
+
+terraform output -json instance_ips | jq -r '.[0]'
