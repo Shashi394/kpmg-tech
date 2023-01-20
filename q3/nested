@@ -1,1 +1,28 @@
+using System;
+using System.Reflection;
 
+namespace GetNestedValueByKey {
+    class Program {
+        static void Main(string[] args) {
+            static object GetNestedValueByKey(JObject obj, string key) {
+                var keys = key.Split('/');
+                JToken current = obj;
+                foreach(var k in keys) {
+                    current = current[k];                   
+                }
+                return current;
+            }
+                       
+           
+            JObject obj = JObject.Parse("{\"a\":{\"b\":{\"c\":\"d\"}}}");
+            var value = GetNestedValueByKey(obj, "a/b/c");
+            Console.WriteLine(value); // Output: "d"
+            
+            obj = JObject.Parse("{\"x\":{\"y\":{\"z\":\"a\"}}}");
+            value = GetNestedValueByKey(obj, "x/y");
+            Console.WriteLine(value); // Output: { "z": "a" }           
+                       
+            
+        }
+    }
+}
