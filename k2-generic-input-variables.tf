@@ -24,7 +24,3 @@ variable "resource_group_location" {
   default = "westeurope"  
 }
 
-variable "node_count" {
-  description = "public IP count for VMs"
-  default = 3
-}
